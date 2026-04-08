@@ -1,6 +1,5 @@
 import { useAuth } from "@/context/AuthContext";
 import Home from "@/screens/Home";
-import Order from "@/screens/Order";
 import Profile from "@/screens/Profile";
 import SignIn from "@/screens/SignIn";
 import {
@@ -46,7 +45,6 @@ const AppNavigator = () => {
           {isOnboardingCompleted ? (
             <>
               <Stack.Screen name="Home" component={Home} />
-              <Stack.Screen name="Order" component={Order} />
               <Stack.Screen name="Profile" component={Profile} />
             </>
           ) : (
