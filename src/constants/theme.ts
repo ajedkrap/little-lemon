@@ -1,56 +1,62 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
+import "@/global.css";
 
-import '@/global.css';
+import { Platform } from "react-native";
 
-import { Platform } from 'react-native';
+// ─── Brand Colors ─────────────────────────────────────────────────────────────
+// Source: Little Lemon Style Guide
+export const BrandColors = {
+  // Primary
+  green: "#495E57",
+  yellow: "#F4CE14",
+  // Secondary
+  salmon: "#EE9972",
+  peach: "#FBDABB",
+  // Highlight
+  cloud: "#EDEFEE",
+  charcoal: "#333333",
+} as const;
 
+// ─── Semantic Color Tokens ────────────────────────────────────────────────────
 export const Colors = {
   light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
+    text: BrandColors.charcoal,
+    textSecondary: BrandColors.green,
+    background: "#FFFFFF",
+    backgroundElement: BrandColors.cloud,
+    backgroundSelected: "#D8DAD9",
+    primary: BrandColors.green,
+    accent: BrandColors.yellow,
   },
   dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
+    text: BrandColors.cloud,
+    textSecondary: BrandColors.peach,
+    background: BrandColors.charcoal,
+    backgroundElement: "#444444",
+    backgroundSelected: "#555555",
+    primary: BrandColors.yellow,
+    accent: BrandColors.green,
   },
 } as const;
 
 export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
 
-export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
-  },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
-  },
-  web: {
-    sans: 'var(--font-display)',
-    serif: 'var(--font-serif)',
-    rounded: 'var(--font-rounded)',
-    mono: 'var(--font-mono)',
-  },
-});
+// ─── Typefaces ────────────────────────────────────────────────────────────────
+// Font files: src/assets/fonts/MarkaziText-Regular.ttf, Karla-Regular.ttf
+export const Fonts = {
+  markaziRegular: "MarkaziText-Regular", // Markazi Text — headlines & display
+  markaziMedium: "MarkaziText-Medium", // Markazi Text — headlines & display
+  markaziSemiBold: "MarkaziText-SemiBold", // Markazi Text — headlines & display
+  markaziBold: "MarkaziText-Bold", // Markazi Text — headlines & display
+  karlaRegular: "Karla-Regular", // Karla — body, labels, UI
+  karlaMedium: "Karla-Medium", // Karla — body, labels, UI
+  karlaSemiBold: "Karla-SemiBold", // Karla — body, labels, UI
+  karlaBold: "Karla-Bold", // Karla — body, labels, UI
+  mono:
+    Platform.select({ ios: "ui-monospace", default: "monospace" }) ??
+    "monospace",
+} as const;
 
+// ─── Spacing Scale ────────────────────────────────────────────────────────────
 export const Spacing = {
   half: 2,
   one: 4,
